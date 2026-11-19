@@ -1,16 +1,10 @@
 import express from "express"
 import "dotenv/config"
 import { conectarBanco } from "./config/database";
+import produtoRoutes from "./routes/produtoRoutes"
 
 const app = express();
-
-app.get("/", (req, res) => (
-    res.send("API da loja funcionando")
-))
-
-app.get("/produtos", (req, res) => (
-    res.send("Lista de produtos")
-))
+app.use("/produtos", produtoRoutes)
 
 async function iniciarServidor(){
     await conectarBanco();
